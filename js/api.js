@@ -6,7 +6,7 @@ $(document).ready(function () {
     var ts = Date.now();
     var hash = CryptoJS.MD5(ts + privateKey + publicKey);
 
-    var url = 'http://gateway.marvel.com:80/v1/public/comics?limit=20&format=comic&formatType=comic&ts=' + ts + '&apikey=' + publicKey + '&hash=' + hash;
+    var url = 'http://gateway.marvel.com:80/v1/public/comics?limit=20&orderBy=title&format=comic&formatType=comic&ts=' + ts + '&apikey=' + publicKey + '&hash=' + hash;
     $.getJSON(url)
     .done(function (response) {
         
@@ -16,10 +16,10 @@ $(document).ready(function () {
         var results = response.data.results;
         var resultsLen = results.length;
         
-        console.log("res", resultsLen)
-
-            for (var i = 0; i < resultsLen; i++) {
-                var comic = results[i];
+        
+        for (var i = 0; i < resultsLen; i++) {
+            var comic = results[i];
+            console.log("res", comic.images.length)
 
                 var content1 = [comic.title, comic.prices[0].price, comic.thumbnail.path + "." + comic.thumbnail.extension];
 
