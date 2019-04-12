@@ -2,31 +2,42 @@ $(document).ready(function () {
 
     var publicKey = "84176a028be87e10753e04eb3af73f45"
     var privateKey = "a343cf1548a66d334d41afe694402711d2513dad"
+    var $status = $("#status");
 
     var ts = Date.now();
     var hash = CryptoJS.MD5(ts + privateKey + publicKey);
 
-    var url = 'http://gateway.marvel.com:80/v1/public/comics?limit=20&orderBy=title&format=comic&formatType=comic&ts=' + ts + '&apikey=' + publicKey + '&hash=' + hash;
+    var url = 'http://gateway.marvel.com:80/v1/public/characters?limit=20&orderBy=name&ts=' + ts + '&apikey=' + publicKey + '&hash=' + hash;
+
+    $status.html("<p>Carregando...</p>");
+
     $.getJSON(url)
-    .done(function (response) {
-        
-        var $status = $("#status");
-        
-        $status.html("");
-        var results = response.data.results;
-        var resultsLen = results.length;
-        
-        
-        for (var i = 0; i < resultsLen; i++) {
-            var comic = results[i];
-            console.log("res", comic.images.length)
+        .done(function (response) {
 
-                var content1 = [comic.title, comic.prices[0].price, comic.thumbnail.path + "." + comic.thumbnail.extension];
+            var results = response.data.results;
+            var resultsLen = results.length;
+            console.log("result", results.length)
 
-                $(".title").append("<div class='grid-item'><img src=" + content1[2] +
-                    " class='thumb'><br/>" + content1[0] +
-                    "<br/>" + content1[1] + "</div>")
+            if (resultsLen <= 0) {
+                $status.html("<p>Not found</p>");
+            } else {
+                $status.html("");
 
+
+                for (var i = 0; i < resultsLen; i++) {
+                    var comic = results[i];
+                    var image = comic.thumbnail.path + "." + comic.thumbnail.extension;
+                    if (image != "http://i.annihil.us/u/prod/marvel/i/mg/b/40/image_not_available.jpg"){
+                        
+                        var content1 = [comic.name, image];
+                        
+                        $(".result").append("<div class='grid-item'>" +
+                        "<img src=" + content1[1] + " class='thumb'>" +
+                        "<p>" + content1[0] + "</p>" +
+                        "</div>")
+                    }
+
+                }
             }
         });
 });
