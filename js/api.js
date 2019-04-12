@@ -7,7 +7,7 @@ $(document).ready(function () {
     var ts = Date.now();
     var hash = CryptoJS.MD5(ts + privateKey + publicKey);
 
-    var url = 'http://gateway.marvel.com:80/v1/public/characters?limit=20&orderBy=name&ts=' + ts + '&apikey=' + publicKey + '&hash=' + hash;
+    var url = 'http://gateway.marvel.com:80/v1/public/characters?limit=20&orderBy=name&name=iron&ts=' + ts + '&apikey=' + publicKey + '&hash=' + hash;
 
     $status.html("<p>Carregando...</p>");
 
@@ -17,12 +17,11 @@ $(document).ready(function () {
             var results = response.data.results;
             var resultsLen = results.length;
             console.log("result", results.length)
-
+            var img = '/img/spide_man.jpg'
             if (resultsLen <= 0) {
-                $status.html("<p>Not found</p>");
+                $status.html("<h1>Not Fount</h1>");
             } else {
                 $status.html("");
-
 
                 for (var i = 0; i < resultsLen; i++) {
                     var comic = results[i];
