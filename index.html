@@ -2,33 +2,39 @@
 <html>
 
 <head>
-    <meta charset="utf-8" />
     <title>Api Marvel</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="css/style.css" rel="stylesheet" type="text/css" />
     <link href="img/favicons.png" rel="icon" />
-    <script src="libs/jQuery/jquery-3.3.1.js"></script>
-    <script src="libs/aes.js"></script>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+        integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+
 </head>
 
 <body>
+    <!-- <img src="/img/spider-man-8bits.jpg" alt=""> -->
+    <!-- <input type="text" id="inputValor2" onchange="teste()" /> -->
+
     <header>
-        <div class="logo">
-            <div class="clearfix"><img src="./img/marvel-logo.png" alt="Home"> </div>
-        </div>
+        <img class="logo" src="img/marvel-logo.png" alt="Home" />
     </header>
-
-    <article>
-
+    <main>
+        <section class="leading">
+            <p class="leading-bigtext">Consumindo API Marvel</p>
+            <p class="leading-text"></p>
+            </section>
         <div id="status"></div>
-
-        <div class="grid-container result"></div>
-
-    </article>
-
-    <footer class="footer">
-        <span class="fa fa-copyright"></span> Neidson Henrique - 2019
+        <section class="cards result">
+        </section>
+    </main>
+    <footer class="footer-min">
+        <p><span class="fa fa-copyright"></span> Neidson Henrique - 2019</p>
     </footer>
 
+    <script src="libs/jQuery/jquery-3.3.1.js"></script>
+    <script src="libs/aes.js"></script>
     <script src="js/api.js" type="text/javascript"></script>
 </body>
 
