@@ -40,7 +40,7 @@ $(document).ready(function () {
                         
                         var content1 = [comic.name, image];
                         
-                        $(".result").append("<article>" +
+                        $(".result").append("<article class='item'>" +
                             "<img src=" + content1[1] + " class='article-img' alt=''>" +
                             "<h1 class='article-title'>" + content1[0] + "</p>" +
                             "</article>")
