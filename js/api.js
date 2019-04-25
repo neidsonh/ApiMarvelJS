@@ -16,7 +16,7 @@ $(document).ready(function () {
     var ts = Date.now();
     var hash = CryptoJS.MD5(ts + privateKey + publicKey);
 
-    var url = 'http://gateway.marvel.com:80/v1/public/characters?limit=7&orderBy=name&ts=' + ts + '&apikey=' + publicKey + '&hash=' + hash;
+    var url = 'http://gateway.marvel.com:80/v1/public/characters?limit=100&orderBy=name&ts=' + ts + '&apikey=' + publicKey + '&hash=' + hash;
 
     $status.html("<h1>Carregando...</h1>");
 
