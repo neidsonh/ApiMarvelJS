@@ -15,18 +15,27 @@ $(document).ready(function () {
         // alert(campo.value);
 
         // impede o envio do form
+        $(".result").html("")
+        $("footer").addClass("footer-min");
         e.preventDefault();
 
 
-        var publicKey = "84176a028be87e10753e04eb3af73f45"
-        var privateKey = "a343cf1548a66d334d41afe694402711d2513dad"
+        var publicKey = "84176a028be87e10753e04eb3af73f45";
+        var privateKey = "a343cf1548a66d334d41afe694402711d2513dad";
         var $status = $("#status");
-        var thumb = 0
+        var thumb = 0;
+        var valuefield = campo.value;
 
         var ts = Date.now();
         var hash = CryptoJS.MD5(ts + privateKey + publicKey);
+        var url = ""
 
-        var url = 'http://gateway.marvel.com:80/v1/public/characters?limit=100&orderBy=name&name='+ campo.value +'&ts=' + ts + '&apikey=' + publicKey + '&hash=' + hash;
+        if (valuefield == '') {
+            url = 'http://gateway.marvel.com:80/v1/public/characters?limit=100&orderBy=name&ts=' + ts + '&apikey=' + publicKey + '&hash=' + hash;
+        } else {
+            url = 'http://gateway.marvel.com:80/v1/public/characters?limit=100&orderBy=name&name=' + valuefield + '&ts=' + ts + '&apikey=' + publicKey + '&hash=' + hash;
+        }
+
 
         $status.html("<h1>Carregando...</h1>");
 
@@ -57,9 +66,9 @@ $(document).ready(function () {
                         }
 
                     }
-                    if (thumb <= 3) {
-                        $("footer").addClass("footer-min");
-                    }
+                    // if (thumb <= 3) {
+                    //     $("footer").addClass("footer-min");
+                    // }
                 }
             });
     });
