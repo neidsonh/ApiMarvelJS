@@ -1,20 +1,9 @@
 $(document).ready(function () {
-    // var teste
-    // function teste(){
-    //     alert($('#inputValor2').val());
-    //     teste = $('#inputValor2').val();
-    //     return $.get(teste);
-    // }
-    // console.log("teste", teste())
 
     var form = document.getElementById('formulario');
     var campo = document.getElementById('campo');
 
     form.addEventListener('submit', function (e) {
-        // alerta o valor do campo
-        // alert(campo.value);
-
-        // impede o envio do form
         $(".result").html("")
         $("footer").addClass("footer-min");
         e.preventDefault();
@@ -33,7 +22,7 @@ $(document).ready(function () {
         if (valuefield == '') {
             url = 'http://gateway.marvel.com:80/v1/public/characters?limit=100&orderBy=name&ts=' + ts + '&apikey=' + publicKey + '&hash=' + hash;
         } else {
-            url = 'http://gateway.marvel.com:80/v1/public/characters?limit=100&orderBy=name&name=' + valuefield + '&ts=' + ts + '&apikey=' + publicKey + '&hash=' + hash;
+            url = 'http://gateway.marvel.com:80/v1/public/characters?limit=100&orderBy=name&nameStartsWith=' + valuefield + '&ts=' + ts + '&apikey=' + publicKey + '&hash=' + hash;
         }
 
 
@@ -66,9 +55,6 @@ $(document).ready(function () {
                         }
 
                     }
-                    // if (thumb <= 3) {
-                    //     $("footer").addClass("footer-min");
-                    // }
                 }
             });
     });
